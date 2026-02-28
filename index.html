@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rutina Alimenticia | Rigoberto</title>
+  <meta name="description" content="Rutina alimenticia (Sopa 1 + desayuno + cena) con una sola opción por comida, basada en los mismos ingredientes de Rupertíña, adaptada para Rigoberto (68 años, 73 kg) con apixabán y Centrum." />
+  <style>
+    :root{
+      --bg1:#0b1220;
+      --bg2:#0f1b33;
+      --card: rgba(255,255,255,.10);
+      --card2: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.14);
+      --text:#eaf0ff;
+      --muted: rgba(234,240,255,.78);
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --glow: 0 0 0 1px rgba(255,255,255,.10), 0 18px 55px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --ok:#2ee59d;
+      --warn:#ffcc66;
+      --bad:#ff5c77;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg1:#f4f7ff;
+        --bg2:#e9eeff;
+        --card: rgba(255,255,255,.82);
+        --card2: rgba(255,255,255,.60);
+        --stroke: rgba(10,20,40,.10);
+        --text:#0a1430;
+        --muted: rgba(10,20,48,.68);
+        --shadow: 0 18px 50px rgba(10,20,40,.12);
+        --glow: 0 0 0 1px rgba(10,20,40,.08), 0 20px 50px rgba(10,20,40,.10);
+      }
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(124,92,255,.35), transparent 55%),
+        radial-gradient(900px 500px at 90% 20%, rgba(25,211,255,.25), transparent 55%),
+        radial-gradient(800px 500px at 50% 90%, rgba(46,229,157,.18), transparent 55%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+      padding: 18px;
+    }
+    .wrap{max-width: 920px; margin: 0 auto;}
+    .top{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      padding: 14px 14px;
+      border-radius: var(--radius);
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+    .brand{display:flex; gap:12px; align-items:flex-start;}
+    .logo{
+      width:44px;height:44px;border-radius:14px;
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(25,211,255,.75));
+      display:grid; place-items:center; font-size: 22px;
+      box-shadow: var(--glow);
+      user-select:none;
+    }
+    h1{margin:0; font-size:18px; letter-spacing:.2px;}
+    .sub{margin:4px 0 0; color: var(--muted); font-size:13px; line-height:1.35;}
+    .pillTop{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 10px 12px; border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.16);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .section{
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: var(--radius);
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 10px 35px rgba(0,0,0,.18);
+      backdrop-filter: blur(12px);
+    }
+    .section h2{
+      margin:0 0 10px;
+      font-size: 17px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .tag{
+      display:inline-flex; align-items:center; gap:6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.12);
+      color: var(--muted);
+      font-size: 12px;
+      width: fit-content;
+    }
+    @media (prefers-color-scheme: light){ .tag{background: rgba(255,255,255,.55)} }
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--ok);box-shadow:0 0 0 4px rgba(46,229,157,.18)}
+    .dotWarn{background: var(--warn); box-shadow:0 0 0 4px rgba(255,204,102,.18)}
+    .dotBad{background: var(--bad); box-shadow:0 0 0 4px rgba(255,92,119,.16)}
+
+    .stack{display:flex; flex-direction:column; gap:12px;}
+    .card{
+      width:100%;
+      padding: 14px;
+      border-radius: var(--radius2);
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      box-shadow: 0 14px 40px rgba(0,0,0,.22);
+    }
+    .card h3{margin:0 0 8px; font-size: 15px;}
+    .card p{margin:0; color: var(--muted); font-size: 13px; line-height: 1.45;}
+    ul{margin: 10px 0 0; padding-left: 18px;}
+    li{margin: 6px 0; color: var(--text);}
+    .small{color: var(--muted); font-size: 12.5px; margin-top: 8px;}
+    .note{
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .warnBox{
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,204,102,.35);
+      background: rgba(255,204,102,.10);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .dangerBox{
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,92,119,.35);
+      background: rgba(255,92,119,.10);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .timeline{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top: 10px;
+    }
+    .timeItem{
+      padding: 12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .timeItem b{font-size:14px}
+    .timeItem span{color: var(--muted); font-size:13px; line-height:1.35}
+
+    footer{
+      margin-top: 14px;
+      text-align:center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    footer .credit{
+      display:inline-flex; gap:8px; align-items:center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.16);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- ARRIBA -->
+    <header class="top">
+      <div class="brand">
+        <div class="logo">🥣</div>
+        <div>
+          <h1>Rutina Alimenticia • Rigoberto (68 años • 73 kg / 160 lb)</h1>
+          <div class="sub">Sopa 1 + desayuno + cena (con gramos crudo y cocido)</div>
+          <div class="sub" style="margin-top:6px;">
+            ✅ Meta: “subir la probabilidad al máximo” de llegar a una vejez muy larga y fuerte (músculo, energía, digestión y control general).
+            Esto <b>no garantiza</b> 120 años, pero sí ayuda a que el cuerpo aguante mejor y se mantenga más funcional.
+          </div>
+        </div>
+      </div>
+      <div class="pillTop">🏷️ <strong>Creador: Brayan Raudales Tu Papi</strong></div>
+    </header>
+
+    <!-- HORARIO -->
+    <section class="section">
+      <h2>🕘 Horario del día <span class="tag"><span class="dot"></span> 9 AM</span></h2>
+
+      <div class="timeline">
+        <div class="timeItem">
+          <div>
+            <b>9:00 AM — Desayuno</b><br/>
+            <span>✅ Apixabán (1ª dosis) • ✅ Centrum (1 tableta con comida)</span>
+          </div>
+          <div class="tag"><span class="dot"></span> fijo</div>
+        </div>
+
+        <div class="timeItem">
+          <div>
+            <b>2:00 PM — Almuerzo</b><br/>
+            <span>Ideal para la <b>Sopa 1</b> (caldo + pollo + verduras)</span>
+          </div>
+          <div class="tag"><span class="dot"></span> fijo</div>
+        </div>
+
+        <div class="timeItem">
+          <div>
+            <b>9:00 PM — Cena</b><br/>
+            <span>✅ Apixabán (2ª dosis) • Mantener horarios iguales todos los días</span>
+          </div>
+          <div class="tag"><span class="dot"></span> fijo</div>
+        </div>
+      </div>
+
+      <div class="dangerBox">
+        <b>Apixabán (regla simple):</b> tomarlo siempre a la misma hora (9 AM y 9 PM).<br/>
+        Si aparece <b>sangre roja</b>, <b>heces negras</b>, sangrado que no para, o moretones enormes sin causa → consultar.
+      </div>
+
+      <div class="warnBox">
+        <b>Centrum:</b> 1 tableta al día con el desayuno. <b>No</b> agregar otro multivitamínico por aparte, salvo indicación médica.
+        (Si toma café pegado a la Centrum, mejor separarlo 1–2 horas).
+      </div>
+    </section>
+
+    <!-- REGLAS -->
+    <section class="section">
+      <h2>✅ Reglas diarias <span class="tag"><span class="dot"></span> Base</span></h2>
+
+      <div class="stack">
+        <div class="card">
+          <h3>Lo que NO se negocia</h3>
+          <ul>
+            <li><b>Proteína en cada comida:</b> huevo / frijoles / pollo (para mantener músculo).</li>
+            <li><b>Verduras diario:</b> repollo + espinaca + tomate + zanahoria.</li>
+            <li><b>Constancia:</b> 80% bien todos los días gana a “perfecto” solo una semana.</li>
+          </ul>
+          <div class="note">🎯 Objetivo real: mantener fuerza y recuperación (músculo = vida larga).</div>
+        </div>
+
+        <div class="card">
+          <h3>Agua y sal (con tus números)</h3>
+          <ul>
+            <li><b>Agua (meta base segura):</b> 2.5–3.5 litros/día.</li>
+            <li><b>Agua (tu meta alta):</b> 5.84 L/día <b>solo si el médico lo permite</b> y se siente normal.</li>
+            <li><b>Sal total máxima:</b> 5.84 g al día (incluye sal “oculta” en salsas/condimentos).</li>
+          </ul>
+          <div class="warnBox">
+            <b>⚠️ No forzar agua:</b> si hay hinchazón, debilidad rara, confusión, o falta de aire, bajar agua y consultar.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESAYUNO (1 OPCIÓN) -->
+    <section class="section">
+      <h2>🍳 Desayuno (9:00 AM) <span class="tag"><span class="dot"></span> Única opción</span></h2>
+
+      <div class="stack">
+        <div class="card">
+          <h3>Opción (completa)</h3>
+          <ul>
+            <li><b>Arroz blanco:</b> 40 g crudo • ~120 g cocido</li>
+            <li><b>Frijoles:</b> 55–60 g secos (crudo) • ~150 g cocidos</li>
+            <li><b>Huevos:</b> 2 unidades (~100 g crudo) • ~95 g cocido</li>
+            <li><b>Espinaca:</b> 60 g cruda • 15–20 g cocida</li>
+            <li><b>Tomate:</b> 100 g crudo • 85–95 g cocido</li>
+            <li><b>Aguacate:</b> 70 g crudo</li>
+            <li><b>Banano:</b> ~160–200 g (con cáscara) • 120–130 g (pelado)</li>
+          </ul>
+          <div class="note">💊 Aquí toma: <b>Apixabán</b> + <b>Centrum</b> (con comida).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALMUERZO SOPA 1 (1 OPCIÓN) -->
+    <section class="section">
+      <h2>🥣 Almuerzo (2:00 PM) — Sopa 1 <span class="tag"><span class="dot"></span> Única opción</span></h2>
+
+      <div class="stack">
+        <div class="card">
+          <h3>Pollo + repollo + pataste + zanahoria + elote</h3>
+          <ul>
+            <li><b>Pollo (sin piel):</b> 180–200 g crudo • 130–150 g cocido</li>
+            <li><b>Repollo:</b> 140 g crudo • 90–105 g cocido</li>
+            <li><b>Pataste:</b> 170 g crudo • 150–160 g cocido</li>
+            <li><b>Zanahoria:</b> 90 g cruda • 75–85 g cocida</li>
+            <li><b>Elote entero:</b> ~200 g crudo • ~220–250 g cocido (≈ 80–100 g de granos)</li>
+            <li><b>Tomate (caldo):</b> 150 g crudo • 130–145 g cocido</li>
+            <li><b>Agua/caldo:</b> 900–1100 ml</li>
+            <li><b>(Opcional) Espagueti:</b> 30–40 g seco • 90–120 g cocido</li>
+          </ul>
+          <div class="note">✅ Meta: comer el pollo y también <b>tomar el caldo</b> (nutrientes + hidratación).</div>
+          <div class="small">*Las cantidades “cocidas” son aproximadas (cambia por método de cocción).</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CENA (1 OPCIÓN) -->
+    <section class="section">
+      <h2>🍝 Cena (9:00 PM) <span class="tag"><span class="dot"></span> Única opción</span></h2>
+
+      <div class="stack">
+        <div class="card">
+          <h3>Cena ideal para cerrar el día</h3>
+          <ul>
+            <li><b>Arroz blanco:</b> 40 g crudo • ~120 g cocido</li>
+            <li><b>Frijoles:</b> 120–150 g cocidos</li>
+            <li><b>Proteína:</b> 1 huevo (50 g crudo • ~48 g cocido)</li>
+            <li><b>Ensalada:</b> repollo 120 g + tomate 120 g + aguacate 50 g (todo crudo)</li>
+          </ul>
+          <div class="note">💊 Aquí toma: <b>Apixabán</b> (2ª dosis). Mantener 9:00 PM fijo.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECOMENDACIONES -->
+    <section class="section">
+      <h2>📌 Recomendaciones al final <span class="tag"><span class="dotWarn"></span> Para vida larga</span></h2>
+
+      <div class="stack">
+        <div class="card">
+          <h3>Movimiento (sin complicarse)</h3>
+          <ul>
+            <li><b>Caminar:</b> 25–30 minutos, <b>5 días por semana</b>.</li>
+            <li><b>2 días/semana (fuerza suave):</b><br>
+              • Sentarse y levantarse de una silla: <b>10–12 reps</b><br>
+              • Empuje a pared: <b>10–12 reps</b><br>
+              • Hacer <b>2–3 rondas</b>
+            </li>
+          </ul>
+          <div class="note">✅ Esto sube mucho la probabilidad de llegar a viejo con músculo, equilibrio y energía.</div>
+        </div>
+
+        <div class="card">
+          <h3>Chequeos</h3>
+          <ul>
+            <li><b>Chequeo cada 6–12 meses</b> (o lo que indique el oncólogo): presión, riñón, azúcar, lípidos.</li>
+            <li><b>Evitar fumar</b> y evitar alcohol en exceso.</li>
+            <li><b>Dormir</b> 7–8 horas si se puede.</li>
+          </ul>
+          <div class="warnBox">
+            <b>Nota:</b> Esta rutina es soporte (músculo, energía, control). El tratamiento del cáncer lo define el oncólogo.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="credit">🏷️ <strong>Creador: Brayan Raudales Tu Papi</strong></div>
+    </footer>
+
+  </div>
+</body>
+</html>
